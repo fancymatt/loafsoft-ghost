@@ -274,7 +274,7 @@ select {
     margin-bottom: var(--ls-space-xl);
 }
 
-.ls-section-heading h1 {
+.ls-section-heading h2 {
     font-family: var(--ls-font-display);
     font-size: clamp(2.5rem, 7vw, 3rem);
     font-weight: 700;
