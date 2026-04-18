@@ -1,12 +1,36 @@
 {{!< default}}
-{{!-- The tag above means: insert everything in this file into the body of the default.hbs template --}}
 
-{{> "components/header" headerStyle=@custom.header_style}}
+<main class="ls-main">
+    <section class="ls-home-hero">
+        <div class="ls-container ls-home-hero__inner">
+            {{#if @site.logo}}
+                <img class="ls-home-hero__logo" src="{{@site.logo}}" alt="{{@site.title}}">
+            {{else}}
+                <div class="ls-home-hero__wordmark">{{@site.title}}</div>
+            {{/if}}
+            {{#if @site.description}}
+                <p class="ls-home-hero__tagline">{{@site.description}}</p>
+            {{/if}}
+            <a class="ls-button" href="#games">See our games &rarr;</a>
+        </div>
+    </section>
 
-{{#match @custom.header_style "!=" "Highlight"}}
-    {{> "components/featured" showFeatured=@custom.show_featured_posts limit=4}}
-{{/match}}
-
-{{> "components/cta"}}
-
-{{> "components/post-list" feed="home" postFeedStyle=@custom.post_feed_style showTitle=true showSidebar=@custom.show_publication_info_sidebar}}
+    <section class="ls-games-section" id="games">
+        <div class="ls-container">
+            <div class="ls-section-heading">
+                <h2>Our Games</h2>
+            </div>
+            {{#get "posts" filter="tag:hash-games" include="tags" limit="all" order="published_at desc"}}
+                {{#if posts}}
+                    <div class="ls-games-grid">
+                        {{#foreach posts}}
+                            {{> "game-card"}}
+                        {{/foreach}}
+                    </div>
+                {{else}}
+                    <p class="ls-empty-state">Games will appear here as soon as they are published.</p>
+                {{/if}}
+            {{/get}}
+        </div>
+    </section>
+</main>

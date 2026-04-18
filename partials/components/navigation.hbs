@@ -1,53 +1,32 @@
-<header id="gh-navigation" class="gh-navigation is-{{#match navigationLayout "Logo on the left"}}left-logo{{else match navigationLayout "Stacked"}}stacked{{else}}middle-logo{{/match}}{{#match @custom.header_and_footer_color "Accent color"}} has-accent-color{{/match}} gh-outer">
-    <div class="gh-navigation-inner gh-inner">
+<header class="ls-nav">
+    <div class="ls-container ls-nav__inner">
+        <a class="ls-nav__brand" href="{{@site.url}}">
+            {{#if @site.logo}}
+                <img src="{{@site.logo}}" alt="{{@site.title}}">
+            {{else}}
+                <span>{{@site.title}}</span>
+            {{/if}}
+        </a>
 
-        <div class="gh-navigation-brand">
-            <a class="gh-navigation-logo is-title" href="{{@site.url}}">
-                {{#if @site.logo}}
-                    <img src="{{@site.logo}}" alt="{{@site.title}}">
-                {{else}}
-                    {{@site.title}}
-                {{/if}}
-            </a>
-            {{> "search-toggle"}}
-            <button class="gh-burger gh-icon-button" aria-label="Menu">
-                {{> "icons/burger"}}
-                {{> "icons/close"}}
-            </button>
-        </div>
-
-        <nav class="gh-navigation-menu">
-            {{navigation}}
-            {{#unless @site.members_enabled}}
-                {{#match navigationLayout "Stacked"}}
-                    {{> "search-toggle"}}
-                {{/match}}
-            {{/unless}}
+        <nav class="ls-nav__menu" aria-label="Primary navigation">
+            {{#foreach navigation}}
+                <a class="ls-nav__link{{#if current}} is-current{{/if}}" href="{{url absolute="relative"}}">{{label}}</a>
+            {{/foreach}}
         </nav>
 
-        <div class="gh-navigation-actions">
-            {{#unless @site.members_enabled}}
-                {{^match navigationLayout "Stacked"}}
-                    {{> "search-toggle"}}
-                {{/match}}
-            {{else}}
-                {{> "search-toggle"}}
-                <div class="gh-navigation-members">
-                    {{#unless @member}}
-                        {{#unless @site.members_invite_only}}
-                            <a href="#/portal/signin" data-portal="signin">Sign in</a>
-                            {{#unless hideSubscribeButton}}
-                                <a class="gh-button" href="#/portal/signup" data-portal="signup">Subscribe</a>
-                            {{/unless}}
-                        {{else}}
-                            <a class="gh-button" href="#/portal/signin" data-portal="signin">Sign in</a>
-                        {{/unless}}
-                    {{else}}
-                        <a class="gh-button" href="#/portal/account" data-portal="account">Account</a>
-                    {{/unless}}
-                </div>
-            {{/unless}}
+        <div class="ls-nav__social" aria-label="Social links">
+            {{#if @site.twitter}}
+                <a class="ls-nav__icon" href="{{twitter_url @site.twitter}}" target="_blank" rel="noopener noreferrer" aria-label="Loafsoft on X">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M18.9 2H22l-6.77 7.73L23 22h-6.1l-4.78-6.79L6.18 22H3.06l7.24-8.28L1 2h6.25l4.32 6.16L18.9 2Zm-1.07 18h1.69L6.33 3.9H4.52L17.83 20Z"></path>
+                    </svg>
+                </a>
+            {{/if}}
+            <a class="ls-nav__icon" href="https://store.steampowered.com/search/?developer={{@site.title}}" target="_blank" rel="noopener noreferrer" aria-label="Loafsoft on Steam">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M11.97 2C6.47 2 2 6.26 2 11.5c0 4.24 2.92 7.83 6.95 9.02l1.63-3.77a2.78 2.78 0 0 1-.03-.36c0-1.56 1.32-2.82 2.95-2.82.16 0 .32.01.48.04l2.13-3.02v-.04a4.18 4.18 0 0 1 4.2-4.14c2.32 0 4.2 1.85 4.2 4.14s-1.88 4.14-4.2 4.14c-.96 0-1.85-.32-2.55-.86l-3.04 2.02v.09c0 1.56-1.32 2.82-2.95 2.82-1.1 0-2.06-.58-2.57-1.44L8.1 19.64A9.98 9.98 0 0 0 11.97 21C17.47 21 22 16.74 22 11.5S17.47 2 11.97 2Zm8.34 6.82a1.74 1.74 0 1 0 0 3.48 1.74 1.74 0 0 0 0-3.48Zm-8.81 6.84a1.36 1.36 0 1 0 0 2.72 1.36 1.36 0 0 0 0-2.72Z"></path>
+                </svg>
+            </a>
         </div>
-
     </div>
 </header>
