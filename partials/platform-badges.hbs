@@ -1,0 +1,13 @@
+<div class="ls-platform-badges">
+    {{#foreach tags}}
+        {{#match slug "steam"}}
+            <span class="ls-platform-badge ls-platform-badge--steam">Steam</span>
+        {{/match}}
+        {{#match slug "itch"}}
+            <span class="ls-platform-badge ls-platform-badge--itch">Itch</span>
+        {{/match}}
+        {{#match slug "coming-soon"}}
+            <span class="ls-platform-badge ls-platform-badge--coming-soon">Coming Soon</span>
+        {{/match}}
+    {{/foreach}}
+</div>

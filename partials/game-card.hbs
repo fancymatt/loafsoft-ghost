@@ -1,0 +1,22 @@
+<a class="ls-game-card" href="{{url}}">
+    <article class="ls-game-card__inner">
+        <div class="ls-game-card__media">
+            {{#if feature_image}}
+                <img src="{{img_url feature_image size="l"}}" alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}">
+            {{else}}
+                <div class="ls-game-card__placeholder">{{title}}</div>
+            {{/if}}
+        </div>
+        <div class="ls-game-card__body">
+            <h2 class="ls-game-card__title">{{title}}</h2>
+            <p class="ls-game-card__hook">
+                {{#if custom_excerpt}}
+                    {{custom_excerpt}}
+                {{else}}
+                    {{excerpt words="12"}}
+                {{/if}}
+            </p>
+            {{> "platform-badges"}}
+        </div>
+    </article>
+</a>
