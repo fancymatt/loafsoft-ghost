@@ -9,7 +9,7 @@
         </a>
 
         <nav class="ls-nav__menu" aria-label="Primary navigation">
-            {{#foreach navigation}}
+            {{#foreach @site.navigation}}
                 <a class="ls-nav__link{{#if current}} is-current{{/if}}" href="{{url absolute="relative"}}">{{label}}</a>
             {{/foreach}}
         </nav>
